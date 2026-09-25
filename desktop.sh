@@ -13,9 +13,9 @@
 # -----------------------------------------------------------------------------
 # EXECUTE
 # -----------------------------------------------------------------------------
-readonly REMOTE=https://raw.github.com/Discr3te/
-source <(curl -fsL "${REMOTE}")
-_loadmodule "_lib/core"
+readonly REMOTE=https://raw.githubusercontent.com/Discr3te/archmod/refs/heads/main
+source <(curl -fsL "${REMOTE}/_lib/utils.sh")
+# _loadmodule "_lib/core"
 
 # -----------------------------------------------------------------------------
 # CONFIG
