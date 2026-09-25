@@ -14,8 +14,8 @@
 # EXECUTE
 # -----------------------------------------------------------------------------
 readonly REMOTE=https://raw.githubusercontent.com/Discr3te/archmod/refs/heads/main
-source <(curl -fsL "${REMOTE}/_lib/utils.sh")
-# _loadmodule "_lib/core"
+source <(curl -fsL "${REMOTE}/_utils/setup.sh")
+_loadmodule "_utils/install"
 
 # -----------------------------------------------------------------------------
 # CONFIG
@@ -30,10 +30,12 @@ readonly CONSOLE_FONT="ter132n"
 readonly TIMEZONE="America/Chicago"a
 readonly MICROCODE="amd-ucode"
 readonly EXTRA_PACKAGES=""
+
 declare -Ar MIRRORLIST=(
   [country]="US"
   [protocol]="https"
 )
+
 declare -Ar DRIVE=(
   [name]="nvme0n1"
   [label]="gpt"

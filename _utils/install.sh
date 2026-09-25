@@ -7,4 +7,4 @@ if [ ! -f "${0}" ]; then
   exit
 fi
 
-echo "_lib/core"
+_loadmodule "common/rank_mirrorlist"
