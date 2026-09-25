@@ -3,15 +3,12 @@
 echo "sourced setup.sh"
 
 _loadmodule() {
-  local source=$1
-  local -n ref=$2
-
-  if [ -z "$ref" ]; then
+  if [ -z "$@" ]; then
     echo "no param"
     return
   fi
 
-  for _block in $ref; do
+  for _block in $@; do
     FILE="${_block/%.sh/}.sh"
     echo "file: $FILE"
 
