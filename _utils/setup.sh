@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+echo "sourced setup.sh"
+
 _loadmodule() {
   if [ -z "$@" ]; then
     return
