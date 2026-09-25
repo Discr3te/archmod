@@ -6,6 +6,8 @@ _loadmodule() {
   if [ -z "$@" ]; then
     echo "no param"
     return
+  else
+    echo "yes param"
   fi
 
   for _block in $@; do
