@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 echo "rank mirrorlist"
+echo "mirrorlist country: ${MIRRORLIST["country"]}"
 
 readonly url="https://archlinux.org/mirrorlist/?country=${MIRRORLIST["country"]}&protocol=${MIRRORLIST["protocol"]}&use_mirror_status=on"
 

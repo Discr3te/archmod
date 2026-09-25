@@ -38,6 +38,8 @@ declare -Ar MIRRORLIST=(
   [protocol]="https"
 )
 
+echo "desktop country: ${MIRRORLIST["country"]}"
+
 declare -Ar DRIVE=(
   [name]="nvme0n1"
   [label]="gpt"

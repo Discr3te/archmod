@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 echo "sourced setup.sh"
+echo "setup country: ${MIRRORLIST["country"]}"
 
 _loadmodule() {
   if [ -z "$@" ]; then

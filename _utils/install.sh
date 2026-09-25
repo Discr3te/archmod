@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 echo "sourced install.sh"
+echo "install country: ${MIRRORLIST["country"]}"
 
 # check if we're in an IO redirect or incorrectly sourced script
 if [ ! -f "${0}" ]; then
