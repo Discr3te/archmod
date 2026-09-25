@@ -4,6 +4,7 @@ echo "sourced setup.sh"
 
 _loadmodule() {
   if [ -z "$@" ]; then
+    echo "no param"
     return
   fi
 
