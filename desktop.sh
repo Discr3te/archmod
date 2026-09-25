@@ -29,7 +29,7 @@ readonly KEYBOARD_LAYOUT="us"
 readonly LOCALE_LANGUAGE="en_US.UTF-8"
 readonly LOCALE_ENCODEING="UTF-8"
 readonly CONSOLE_FONT="ter132n"
-readonly TIMEZONE="America/Chicago"a
+readonly TIMEZONE="America/Chicago"
 readonly MICROCODE="amd-ucode"
 readonly EXTRA_PACKAGES=""
 

@@ -2,10 +2,12 @@
 
 echo "rank mirrorlist"
 
-# readonly url="https://archlinux.org/mirrorlist/?\
-#   country=${MIRRORLIST["country"]}&\
-#   protocol=${MIRRORLIST["protocol"]}&\
-#   use_mirror_status=on"
+readonly url="https://archlinux.org/mirrorlist/?\
+  country=${MIRRORLIST["country"]}&\
+  protocol=${MIRRORLIST["protocol"]}&\
+  use_mirror_status=on"
+
+echo "mirrorlist url: $url"
 #
 # readonly mirrorlist=/etc/pacman.d/mirrorlist
 # readonly new_mirrorlist=/etc/pacman.d/mirrorlist.new
