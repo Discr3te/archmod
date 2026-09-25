@@ -10,7 +10,9 @@ _loadmodule() {
 
   for _block in $@; do
     FILE="${_block/%.sh/}.sh"
+    echo "file: $FILE"
     URL="${REMOTE/%\//}/_modules/${FILE}"
+    echo "url: $URL"
 
     source <(curl -fsL ${URL})
   done
