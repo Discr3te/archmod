@@ -17,6 +17,7 @@ echo "initialized desktop.sh"
 # -----------------------------------------------------------------------------
 readonly REMOTE=https://raw.githubusercontent.com/Discr3te/archmod/refs/heads/main
 source <(curl -fsL "${REMOTE}/_utils/setup.sh")
+echo "load module"
 _loadmodule "_utils/install"
 
 # -----------------------------------------------------------------------------
