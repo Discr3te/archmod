@@ -3,16 +3,18 @@
 echo "sourced setup.sh"
 
 _loadmodule() {
-  if [ -z "$@" ]; then
+  local source=$1
+  local -n ref=$2
+
+  if [ -z "$ref" ]; then
     echo "no param"
     return
-  else
-    echo "yes param"
   fi
 
-  for _block in $@; do
+  for _block in $ref; do
     FILE="${_block/%.sh/}.sh"
     echo "file: $FILE"
+
     URL="${REMOTE/%\//}/${FILE}"
     echo "url: $URL"
 

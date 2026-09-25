@@ -9,4 +9,4 @@ if [ ! -f "${0}" ]; then
   exit
 fi
 
-_loadmodule "common/rank_mirrorlist"
+_loadmodule "_modules/common/rank_mirrorlist"
