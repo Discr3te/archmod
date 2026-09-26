@@ -2,7 +2,6 @@
 
 ```
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Discr3te/archmod/refs/heads/main/desktop.sh)"
-
 ```
 
 ## Acknowledgments
