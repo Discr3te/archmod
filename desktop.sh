@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
-echo "initialized desktop.sh"
+# -----------------------------------------------------------------------------
+# REMOTE
+# -----------------------------------------------------------------------------
+
+readonly REMOTE=https://raw.githubusercontent.com/Discr3te/archmod/refs/heads/main
 
 # -----------------------------------------------------------------------------
 # HARDWARE
@@ -13,34 +17,29 @@ echo "initialized desktop.sh"
 # Storage: SK Hynix PC601 256GB PCIe Gen3
 
 # -----------------------------------------------------------------------------
-# EXECUTE
-# -----------------------------------------------------------------------------
-readonly REMOTE=https://raw.githubusercontent.com/Discr3te/archmod/refs/heads/main
-. <(curl -fsL "${REMOTE}/_utils/setup.sh")
-_loadmodule "_utils/install"
-
-# -----------------------------------------------------------------------------
 # CONFIG
 # -----------------------------------------------------------------------------
 
-readonly USERNAME="ryan"
-readonly HOSTNAME="desktop"
-readonly KEYBOARD_LAYOUT="us"
-readonly LOCALE_LANGUAGE="en_US.UTF-8"
-readonly LOCALE_ENCODEING="UTF-8"
-readonly CONSOLE_FONT="ter132n"
-readonly TIMEZONE="America/Chicago"
-readonly MICROCODE="amd-ucode"
-readonly EXTRA_PACKAGES=""
+readonly CONFIG_FILE="$REMOTE/desktop.sh"
 
-declare -Ar MIRRORLIST=(
+USERNAME="ryan"
+HOSTNAME="desktop"
+KEYBOARD_LAYOUT="us"
+LOCALE_LANGUAGE="en_US.UTF-8"
+LOCALE_ENCODEING="UTF-8"
+CONSOLE_FONT="ter132n"
+TIMEZONE="America/Chicago"
+MICROCODE="amd-ucode"
+EXTRA_PACKAGES=""
+
+declare -A MIRRORLIST=(
   [country]="US"
   [protocol]="https"
+  [ip_version]="4"
+  [use_mirror_status]="on"
 )
 
-echo "desktop country: ${MIRRORLIST["country"]}"
-
-declare -Ar DRIVE=(
+declare -A DRIVE=(
   [name]="nvme0n1"
   [label]="gpt"
   [efi,size]="1"
@@ -49,3 +48,9 @@ declare -Ar DRIVE=(
   [separate_home,size]="50"
   [unit]="GiB"
 )
+
+# -----------------------------------------------------------------------------
+# EXECUTE
+# -----------------------------------------------------------------------------
+source <(curl -fsL "${REMOTE}/_lib/helper.sh")
+_loadmodule "_lib/bootstrap"

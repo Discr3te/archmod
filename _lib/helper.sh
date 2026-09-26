@@ -1,7 +1,15 @@
 #!/usr/bin/env bash
 
-echo "sourced setup.sh"
-echo "setup country: ${MIRRORLIST["country"]}"
+echo "sourced helper.sh"
+
+_defaultvalue() {
+  local -n ref=$1
+  local default_value=$2
+
+  if [[ -z ${ref+x} ]]; then
+    ref="$default_value"
+  fi
+}
 
 _loadmodule() {
   if [ -z "$@" ]; then
