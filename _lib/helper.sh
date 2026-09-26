@@ -12,17 +12,26 @@ _defaultvalue() {
 }
 
 _loadmodule() {
-  if [ -z "$@" ]; then
+  local -n ref=$1
+  local module
+
+  if [ -z "$ref" ]; then
     echo "no param"
     return
   fi
 
-  for _block in $@; do
-    FILE="${_block/%.sh/}.sh"
+  for module in $ref; do
+    FILE="${module/%.sh/}.sh"
     echo "file: $FILE"
 
-    URL="${REMOTE/%\//}/${FILE}"
-    echo "url: $URL"
+    case "$module" in
+    _lib/*)
+      URL="${REMOTE/%\//}/${FILE}"
+      ;;
+    */*)
+      URL="${REMOTE/%\//}/_modules/${FILE}"
+      ;;
+    esac
 
     source <(curl -fsL ${URL})
   done

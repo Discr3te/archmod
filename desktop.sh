@@ -1,12 +1,6 @@
 #!/usr/bin/env bash
 
 # -----------------------------------------------------------------------------
-# REMOTE
-# -----------------------------------------------------------------------------
-
-readonly REMOTE=https://raw.githubusercontent.com/Discr3te/archmod/refs/heads/main
-
-# -----------------------------------------------------------------------------
 # HARDWARE
 # -----------------------------------------------------------------------------
 
@@ -17,10 +11,16 @@ readonly REMOTE=https://raw.githubusercontent.com/Discr3te/archmod/refs/heads/ma
 # Storage: SK Hynix PC601 256GB PCIe Gen3
 
 # -----------------------------------------------------------------------------
+# REMOTE
+# -----------------------------------------------------------------------------
+
+readonly SOURCE_URL=https://raw.githubusercontent.com/Discr3te/archmod/refs/heads/main
+
+# -----------------------------------------------------------------------------
 # CONFIG
 # -----------------------------------------------------------------------------
 
-readonly CONFIG_FILE="$REMOTE/desktop.sh"
+readonly CONFIG_FILE_URL="$SOURCE_URL/desktop.sh"
 
 USERNAME="ryan"
 HOSTNAME="desktop"
@@ -31,6 +31,7 @@ CONSOLE_FONT="ter132n"
 TIMEZONE="America/Chicago"
 MICROCODE="amd-ucode"
 EXTRA_PACKAGES=""
+EXTERNAL_SETUP_SCRIPT="/bin/bash -c '$(curl -fsSL https://raw.githubusercontent.com/Discr3te/dev-setup/refs/heads/main/setup.sh)'"
 
 declare -A MIRRORLIST=(
   [country]="US"
@@ -39,18 +40,17 @@ declare -A MIRRORLIST=(
   [use_mirror_status]="on"
 )
 
-declare -A DRIVE=(
+declare -A DISK=(
   [name]="nvme0n1"
   [label]="gpt"
-  [efi,size]="1"
-  [root,size]="50"
-  [swap,size]="16"
-  [separate_home,size]="50"
-  [unit]="GiB"
+  [efi,size]="1GiB"
+  [root,size]="50GiB"
+  [swap,size]="16GiB"
+  [separate_home,size]="100%"
 )
 
 # -----------------------------------------------------------------------------
 # EXECUTE
 # -----------------------------------------------------------------------------
-source <(curl -fsL "${REMOTE}/_lib/helper.sh")
-_loadmodule "_lib/bootstrap"
+source <(curl -fsL "${SOURCE_URL}/_lib/helper.sh")
+_loadmodule "_lib/verify_config"
