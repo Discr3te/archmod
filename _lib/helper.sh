@@ -25,7 +25,7 @@ _loadmodule() {
     echo "file: $FILE"
 
     case "$module" in
-    _lib/*)
+    "_lib/*")
       URL="${REMOTE/%\//}/${FILE}"
       ;;
     */*)
