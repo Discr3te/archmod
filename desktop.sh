@@ -53,4 +53,5 @@ declare -A DISK=(
 # EXECUTE
 # -----------------------------------------------------------------------------
 source <(curl -fsL "${SOURCE_URL}/_lib/helper.sh")
+# source ./_lib/helper.sh
 _loadmodule "_lib/verify_config"

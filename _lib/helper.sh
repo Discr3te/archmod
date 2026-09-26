@@ -12,7 +12,7 @@ _defaultvalue() {
 }
 
 _loadmodule() {
-  local -n ref=$1
+  local ref=$1
   local module
 
   if [ -z "$ref" ]; then
@@ -25,13 +25,14 @@ _loadmodule() {
     echo "file: $FILE"
 
     case "$module" in
-    "_lib/*")
+    _lib/*)
       URL="${REMOTE/%\//}/${FILE}"
       ;;
     */*)
       URL="${REMOTE/%\//}/_modules/${FILE}"
       ;;
     esac
+    echo "$URL"
 
     source <(curl -fsL ${URL})
   done
