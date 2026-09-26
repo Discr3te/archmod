@@ -2,7 +2,7 @@
 
 echo "sourced helper.sh"
 
-_defaultvalue() {
+set_default_value() {
   local -n ref=$1
   local default_value=$2
 
@@ -11,11 +11,17 @@ _defaultvalue() {
   fi
 }
 
-_loadmodule() {
-  local ref=$1
+load_module() {
+  # local ref=$1
   local module
 
-  if [ -z "$ref" ]; then
+  if [[ $1 == */* ]]; then
+    local ref=$1
+  else
+    local -n ref=$1
+  fi
+
+  if [[ -z "$ref" ]]; then
     echo "no param"
     return
   fi
@@ -25,14 +31,17 @@ _loadmodule() {
     echo "file: $FILE"
 
     case "$module" in
-    _lib/*)
-      URL="${REMOTE/%\//}/${FILE}"
+    lib/*)
+      URL="${SOURCE_URL/%\//}/${FILE}"
       ;;
     */*)
-      URL="${REMOTE/%\//}/_modules/${FILE}"
+      URL="${SOURCE_URL/%\//}/modules/${FILE}"
+      ;;
+    *)
+      echo "no case"
       ;;
     esac
-    echo "$URL"
+    echo "url: $URL"
 
     source <(curl -fsL ${URL})
   done

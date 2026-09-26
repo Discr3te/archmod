@@ -2,44 +2,32 @@
 # =============================================================================
 # Archmod: A modular Arch Linux install script.
 # (A minor rewrite of Altercation/Archblocks)
-#
-# Boot the Arch Linux install media, then run one of the following:
-# Note: for this script only, CONFIG_FILE_URL must be set for direct curl|bash.
-#
-# One-liner (pipe directly into bash):
-#   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Discr3te/archmod/refs/heads/main/desktop.sh)"
-#
-# Download first, then run:
-#   curl -sfL https://raw.githubusercontent.com/Discr3te/archmod/refs/heads/main/desktop.sh
-#   bash desktop.sh
-#
-# Already have this file locally:
-#   bash desktop.sh
 # =============================================================================
 
 # =============================================================================
 # HARDWARE
 # =============================================================================
 
-# CPU: AMD Ryzen 7 7700x 8c/16t
-# GPU: AMD Radeon RX 6600
-# RAM: Corsair Vengeance 32GB DDR5 5600MT/s
-# MOTHERBOARD: ROG Strix X670E-I Gaming Wifi
-# Storage: SK Hynix PC601 256GB PCIe Gen3
+# Laptop Model: Lenovo Thinkpad T14 Gen 5
+# CPU:
+# GPU:
+# RAM:
+# MOTHERBOARD:
+# Storage:
 
 # =============================================================================
 # REPOSITORY
 # =============================================================================
 
 readonly SOURCE_URL=https://raw.githubusercontent.com/Discr3te/archmod/refs/heads/main
-readonly CONFIG_FILE_URL="$SOURCE_URL/desktop.sh"
+readonly CONFIG_FILE_URL="$SOURCE_URL/laptop_t14.sh"
 
 # =============================================================================
 # CONFIG
 # =============================================================================
 
 USERNAME="ryan"
-HOSTNAME="desktop"
+HOSTNAME="t14"
 KEYBOARD_LAYOUT="us"
 LOCALE_LANGUAGE="en_US.UTF-8"
 LOCALE_ENCODEING="UTF-8"
@@ -50,10 +38,10 @@ KERNEL="linux"
 BOOTLOADER="grub"
 NETWORK=""
 EXTRA_PACKAGES=""
-EXTERNAL_SETUP_SCRIPT="/bin/bash -c '$(curl -fsSL https://raw.githubusercontent.com/Discr3te/dev-setup/refs/heads/main/setup.sh)'"
+EXTERNAL_SETUP_SCRIPT="$(/bin/bash -c '$(curl -fsSL https://raw.githubusercontent.com/Discr3te/dev-setup/refs/heads/main/setup.sh)')"
 
 declare -A MIRRORLIST=(
-  [country]="US"
+  [country]="us"
   [protocol]="https"
   [ip_version]="4"
   [use_mirror_status]="on"
@@ -64,13 +52,12 @@ declare -A DISK=(
   [label]="gpt"
   [efi,size]="1GiB"
   [root,size]="50GiB"
-  [swap,size]="16GiB"
+  [swap,size]="8GiB"
   [separate_home,size]="100%"
 )
 
 # =============================================================================
 # EXECUTE
 # =============================================================================
-# source <(curl -fsL "${SOURCE_URL}/lib/helper.sh")
-source ./lib/helper.sh
-load_module "lib/preflight_check"
+source <(curl -fsL "${SOURCE_URL}/lib/helper.sh")
+loadmodule "lib/verify_config"
