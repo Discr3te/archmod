@@ -1,0 +1,36 @@
+
+User groups:
+adm
+ftp
+games
+http
+log
+rfkill
+sys
+systemd-journal
+uucp
+wheel
+
+System groups:
+dbus
+kmen
+locate
+lp
+mail
+nobody
+proc
+root
+smmsp
+tty
+utmp
+
+Pre-systemd groups:
+audio
+disk
+floppy
+input
+kvm
+optical
+scanner
+storage
+video

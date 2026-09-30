@@ -16,18 +16,24 @@
 # Storage:
 
 # =============================================================================
-# REPOSITORY
+# REPOSITORIES
 # =============================================================================
 
-readonly SOURCE_URL=https://raw.githubusercontent.com/Discr3te/archmod/refs/heads/main
-readonly CONFIG_FILE_URL="$SOURCE_URL/laptop_t14.sh"
+SOURCE_URL=https://raw.githubusercontent.com/Discr3te/archmod/refs/heads/main
+CONFIG_FILE_URL="$SOURCE_URL/laptop_t14.sh"
+EXTERNAL_SETUP_SCRIPT="/bin/bash -c '$(curl -fsSL https://raw.githubusercontent.com/Discr3te/dev-setup/refs/heads/main/setup.sh)'"
 
 # =============================================================================
 # CONFIG
 # =============================================================================
 
-USERNAME="ryan"
-HOSTNAME="t14"
+declare -A USER=(
+  [name]="ryan"
+  [group]="wheel"
+  [sudo,enable]="true"
+)
+
+HOST_NAME="t14"
 KEYBOARD_LAYOUT="us"
 LOCALE_LANGUAGE="en_US.UTF-8"
 LOCALE_ENCODEING="UTF-8"
@@ -38,7 +44,6 @@ KERNEL="linux"
 BOOTLOADER="grub"
 NETWORK=""
 EXTRA_PACKAGES=""
-EXTERNAL_SETUP_SCRIPT="$(/bin/bash -c '$(curl -fsSL https://raw.githubusercontent.com/Discr3te/dev-setup/refs/heads/main/setup.sh)')"
 
 declare -A MIRRORLIST=(
   [country]="us"
@@ -49,7 +54,6 @@ declare -A MIRRORLIST=(
 
 declare -A DISK=(
   [name]="nvme0n1"
-  [label]="gpt"
   [efi,size]="1GiB"
   [root,size]="50GiB"
   [swap,size]="8GiB"
@@ -60,4 +64,4 @@ declare -A DISK=(
 # EXECUTE
 # =============================================================================
 source <(curl -fsL "${SOURCE_URL}/lib/helper.sh")
-loadmodule "lib/verify_config"
+loadmodule "lib/install"

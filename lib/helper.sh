@@ -2,12 +2,38 @@
 
 echo "sourced helper.sh"
 
-set_default_value() {
-  local -n ref=$1
-  local default_value=$2
+log_message() {
+  local log_level="$1"
+  local message="$2"
+  local timestamp
 
-  if [[ -z ${ref+x} ]]; then
-    ref="$default_value"
+  case "$log_level" in
+  "1")
+    log_level="FATAL"
+    ;;
+  "2")
+    log_level="ERROR"
+    ;;
+  "3")
+    log_level="WARNING"
+    ;;
+  "4")
+    log_level="INFO"
+    ;;
+  *)
+    ;;
+  esac
+
+  printf -v timestamp "%(%Y-%m-%d %H:%M:%S)T" -1
+
+  printf "[%s] [%s] %s\n" "$timestamp" "$log_level" "$message" >>"${LOGGING[file]}"
+}
+
+default_value() {
+  local -n ref=$1
+
+  if [[ -z ${ref:+x} ]]; then
+    ref="$2"
   fi
 }
 

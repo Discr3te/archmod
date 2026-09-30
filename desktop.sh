@@ -31,15 +31,26 @@
 # REPOSITORY
 # =============================================================================
 
-readonly SOURCE_URL=https://raw.githubusercontent.com/Discr3te/archmod/refs/heads/main
-readonly CONFIG_FILE_URL="$SOURCE_URL/desktop.sh"
+SOURCE_URL=https://raw.githubusercontent.com/Discr3te/archmod/refs/heads/main
+CONFIG_FILE_URL="$SOURCE_URL/desktop.sh"
+EXTERNAL_SETUP_SCRIPT="/bin/bash -c '$(curl -fsSL https://raw.githubusercontent.com/Discr3te/dev-setup/refs/heads/main/setup.sh)'"
 
 # =============================================================================
 # CONFIG
 # =============================================================================
 
-USERNAME="ryan"
-HOSTNAME="desktop"
+declare -A LOGGING=(
+  [enable]="true"
+  [file_name]="archmod.log"
+)
+
+declare -A USER=(
+  [name]="ryan"
+  [group]="wheel"
+  [sudo,enable]="true"
+)
+
+HOST_NAME="desktop"
 KEYBOARD_LAYOUT="us"
 LOCALE_LANGUAGE="en_US.UTF-8"
 LOCALE_ENCODEING="UTF-8"
@@ -50,7 +61,6 @@ KERNEL="linux"
 BOOTLOADER="grub"
 NETWORK=""
 EXTRA_PACKAGES=""
-EXTERNAL_SETUP_SCRIPT="/bin/bash -c '$(curl -fsSL https://raw.githubusercontent.com/Discr3te/dev-setup/refs/heads/main/setup.sh)'"
 
 declare -A MIRRORLIST=(
   [country]="US"
@@ -64,13 +74,14 @@ declare -A DISK=(
   [label]="gpt"
   [efi,size]="1GiB"
   [root,size]="50GiB"
+  [swap,enable]="true"
   [swap,size]="16GiB"
+  [separate_home,enable]="true"
   [separate_home,size]="100%"
 )
 
 # =============================================================================
 # EXECUTE
 # =============================================================================
-# source <(curl -fsL "${SOURCE_URL}/lib/helper.sh")
-source ./lib/helper.sh
-load_module "lib/preflight_check"
+source <(curl -fsL "${SOURCE_URL}/lib/helper.sh")
+load_module "lib/install"
