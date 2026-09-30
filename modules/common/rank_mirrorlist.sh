@@ -42,7 +42,7 @@ if [ -f "$mirrorlist" ]; then
   mv $mirrorlist $backup_mirrorlist
 fi
 
-mirrorlist_url -o $new_mirrorlist "$mirrorlist_url"
+curl -o $new_mirrorlist "$mirrorlist_url"
 sed -i 's/^# *Server/Server/' $new_mirrorlist
 rankmirrors -n 5 $new_mirrorlist >$mirrorlist
 rm -rf $new_mirrorlist
