@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
-echo "Downloading pacman-corntib"
-pacman -Sy --noconfirm --needed pacman-contrib
-echo "Finished downloading pacman-contrib"
+printf "%s" "Setting up mirrorlist ranking"
+pacman -Sy --noconfirm --needed pacman-contrib &>/dev/null
 
 mirrorlist_url="https://archlinux.org/mirrorlist/?"
 mirrorlist=/etc/pacman.d/mirrorlist
@@ -39,6 +38,10 @@ case ${MIRRORLIST["ip_version"]} in
 esac
 
 mirrorlist_url+="use_mirror_status=${MIRRORLIST["use_mirror_status"]}"
+
+if [ -f "$backup_mirrorlist" ]; then
+  rm $backup_mirrorlist
+fi
 
 if [ -f "$mirrorlist" ]; then
   mv $mirrorlist $backup_mirrorlist

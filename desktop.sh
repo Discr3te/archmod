@@ -71,7 +71,6 @@ declare -A MIRRORLIST=(
 
 declare -A DISK=(
   [name]="nvme0n1"
-  [label]="gpt"
   [efi,size]="1GiB"
   [root,size]="50GiB"
   [swap,enable]="true"

@@ -26,6 +26,11 @@ EXTERNAL_SETUP_SCRIPT=
 # CONFIG
 # =============================================================================
 
+declare -A LOGGING=(
+  [enable]=
+  [file_name]=
+)
+
 declare -A USER=(
   [name]=
   [group]=       # Check resources/user_group.txt for a list.
@@ -40,6 +45,8 @@ CONSOLE_FONT=     # Check resources/console_font.txt for a list.
 TIMEZONE=         # Check resources/timezone.txt for a list.
 MICROCODE=        # "intel-ucode" or "amd-ucode"
 KERNEL=           # "linux"
+BOOTLOADER=       # "ask" or "grub"
+NETWORK=
 EXTRA_PACKAGES=
 
 declare -A MIRRORLIST=(
@@ -50,7 +57,7 @@ declare -A MIRRORLIST=(
 )
 
 declare -A DISK=(
-  [name]=
+  [name]= # "ask" or "nvme[0-9]n[0-9]" or "sd[a-z]"
   [efi,size]=
   [root,size]=
   [swap,enable]= # "true" or "false"
