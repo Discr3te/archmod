@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
+echo "Downloading pacman-corntib"
 pacman -Syu --noconfirm --needed pacman-contrib
+echo "Finished downloading pacman-contrib"
 
 mirrorlist_url="https://archlinux.org/mirrorlist/?"
 mirrorlist=/etc/pacman.d/mirrorlist
