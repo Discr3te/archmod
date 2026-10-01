@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-pacman -S --noconfirm --needed pacman-contrib &>/dev/null
+pacman -Syu --noconfirm --needed pacman-contrib
 
 mirrorlist_url="https://archlinux.org/mirrorlist/?"
 mirrorlist=/etc/pacman.d/mirrorlist
