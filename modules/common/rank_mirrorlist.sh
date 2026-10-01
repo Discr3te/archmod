@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-echo "sourced rank mirrorlist"
+pacman -S --noconfirm --needed pacman-contrib &>/dev/null
 
 mirrorlist_url="https://archlinux.org/mirrorlist/?"
 mirrorlist=/etc/pacman.d/mirrorlist
