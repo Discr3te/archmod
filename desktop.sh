@@ -66,7 +66,7 @@ NETWORK="networkmanager"
 GPU_PACKAGES="amd_opensource"
 HARDWARE=""
 EXTRA_PACKAGES=""
-EXTERNAL_SCRIPT="/bin/bash -c '$(curl -fsSL https://raw.githubusercontent.com/Discr3te/dev-setup/refs/heads/main/setup.sh)'"
+EXTERNAL_SCRIPT="arch_setup"
 
 declare -A MIRRORLIST=(
   [country]="US"
