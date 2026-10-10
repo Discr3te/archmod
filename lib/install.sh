@@ -69,9 +69,6 @@ case ${IN_CHROOT:-false} in
   umount -R "$MOUNT_PATH"
   ;;
 "true")
-  ehco "lsblk"
-  lsblk
-  sleep 20
 
   load_module "timezone/${TIMEZONE[ntp]}"
   load_module common/locale

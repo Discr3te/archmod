@@ -68,7 +68,7 @@ NETWORK="networkmanager"
 HARDWARE="laptop_power"
 GPU_PACKAGES="amd_opensource"
 EXTRA_PACKAGES=""
-EXTERNAL_SCRIPT=""
+EXTERNAL_SCRIPT="arch_setup"
 
 declare -A MIRRORLIST=(
   [country]="US"
