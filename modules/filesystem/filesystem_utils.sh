@@ -30,9 +30,7 @@ create_new_partition_table() {
 
   case $disk_label in
   "gpt")
-    sfdisk "${sfdisk_opts[@]}" /dev/"${DISK[name]}" <<EOF
-    label: gpt
-EOF
+    sfdisk "${sfdisk_opts[@]}" "/dev/${DISK[name]}" <<<"label: gpt"
     ;;
   "mbr")
     : # come back and implement
@@ -55,6 +53,11 @@ add_partition() {
   local type=$4
 
   local partition_info
+  local sfdisk_opts=(
+    --append
+    --wipe always
+    --wipe-partitions always
+  )
 
   [[ $size == "100%" ]] && size=+ # sfdisk uses '+' for 100%
 
@@ -65,5 +68,5 @@ add_partition() {
     "type=$type"
   )
 
-  sfdisk --append "/dev/${DISK[name]}" <<<"${partition_info[*]}"
+  sfdisk "${sfdisk_opts[@]}" "/dev/${DISK[name]}" <<<"${partition_info[*]}"
 }
