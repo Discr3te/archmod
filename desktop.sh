@@ -61,7 +61,7 @@ declare -A TIMEZONE=(
 )
 MICROCODE="amd-ucode"
 KERNEL="linux"
-BOOTLOADER="grub_efi"
+BOOTLOADER="systemd_boot"
 NETWORK="networkmanager"
 GPU_PACKAGES="amd_opensource"
 HARDWARE=""
