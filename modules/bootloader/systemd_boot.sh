@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+install_pkg efibootmgr
+
 ROOT_PARTITION_UUID=$(blkid -s UUID -o value /dev/$ROOT_PARTITION)
 
 if [[ -z $ROOT_PARTITION_UUID ]]; then
