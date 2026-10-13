@@ -2,3 +2,5 @@
 
 ln -sf /usr/share/zoneinfo/${TIMEZONE[zone]} /etc/localtime
 hwclock --systohc
+
+systemctl enable systemd-timesyncd.service

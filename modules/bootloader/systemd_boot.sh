@@ -2,7 +2,7 @@
 
 install_pkg efibootmgr
 
-ROOT_PARTITION_UUID=$(blkid -s UUID -o value /dev/$ROOT_PARTITION)
+ROOT_PARTITION_UUID=$(blkid -s UUID -o value "/dev/$ROOT_PARTITION")
 
 if [[ -z $ROOT_PARTITION_UUID ]]; then
   echo "Could not get UUID for /dev/$ROOT_PARTITION" >&2
@@ -28,5 +28,3 @@ options root=UUID=${ROOT_PARTITION_UUID} rw
 EOF
 
 systemctl enable systemd-boot-update.service
-
-# bootctl list

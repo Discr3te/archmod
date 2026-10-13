@@ -31,6 +31,6 @@ mkfs.ext4 "/dev/$HOME_PARTITION"
 
 # Mount Partitions
 mount "/dev/$ROOT_PARTITION" $MOUNT_PATH
-mount --mkdir "/dev/$BOOT_PARTITION" $BOOT_PATH
+mount --mkdir -o fmask=0077,dmask=0077 "/dev/$BOOT_PARTITION" $BOOT_PATH
 swapon "/dev/$SWAP_PARTITION"
 mount --mkdir "/dev/$HOME_PARTITION" $HOME_PATH

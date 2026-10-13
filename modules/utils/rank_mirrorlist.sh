@@ -40,7 +40,12 @@ esac
 mirrorlist_url+="use_mirror_status=${MIRRORLIST["use_mirror_status"]}"
 
 printf "%s\n" "Downloading new mirrorlist..."
-curl -fsSL "$mirrorlist_url" -o $new_mirrorlist || exit $?
+curl -fsSL \
+  --retry 5 \
+  --retry-delay 3 \
+  --retry-all-errors \
+  "$mirrorlist_url" \
+  -o "$new_mirrorlist" || exit $?
 uncomment "Server" "$new_mirrorlist"
 
 if [ -f "$backup_mirrorlist" ]; then

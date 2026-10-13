@@ -24,4 +24,4 @@ mkfs.ext4 "/dev/$ROOT_PARTITION"
 
 # Mount Partitions
 mount "/dev/$ROOT_PARTITION" $MOUNT_PATH
-mount --mkdir "/dev/$BOOT_PARTITION" $BOOT_PATH
+mount --mkdir -o fmask=0077,dmask=0077 "/dev/$BOOT_PARTITION" $BOOT_PATH
