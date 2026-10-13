@@ -1,4 +1,33 @@
 #!/usr/bin/env bash
+# =============================================================================
+# ROOT
+# =============================================================================
+
+case "${USER[root,enable]}" in
+"true")
+  case "${USER[root,enable]}" in
+  "ask")
+    prompt_password 'USER[root,password]' "password for root"
+
+    chpasswd <<EOF
+      root:${USER[root,password]}
+EOF
+    ;;
+  "default")
+    chpasswd <<EOF
+      root:admin
+EOF
+    ;;
+  esac
+  ;;
+"false")
+  passwd -l root
+  ;;
+esac
+
+# =============================================================================
+# USER
+# =============================================================================
 
 # Creating the user and adding the groups
 case "${USER[sudo,enable]}" in
@@ -33,7 +62,7 @@ EOF
 "default")
   # Password will be "mypassword", and will need to be reset after login
   chpasswd <<EOF
-${USER[name]}:mypassword 
+${USER[name]}:mypassword
 EOF
   ;;
 esac

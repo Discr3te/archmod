@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+[[ "$MICROCODE" == "all" ]] && MICROCODE="amd-ucode intel-ucode"
+
 packages=(
   "base"
   "linux-firmware"

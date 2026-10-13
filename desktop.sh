@@ -10,7 +10,7 @@
 #   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Discr3te/archmod/refs/heads/main/desktop.sh)"
 #
 # Download first, then run:
-#   curl -sfL https://raw.githubusercontent.com/Discr3te/archmod/refs/heads/main/desktop.sh
+#   curl -sfLO https://raw.githubusercontent.com/Discr3te/archmod/refs/heads/main/desktop.sh
 #   bash desktop.sh
 #
 # Already have this file locally:
@@ -38,12 +38,8 @@ CONFIG_FILE_URL="$SOURCE_URL/desktop.sh"
 # CONFIG
 # =============================================================================
 
-declare -A LOGGING=(
-  [enable]="false"
-  [file_name]="archmod.log"
-)
-
 declare -A USER=(
+  [root,enable]="false"
   [name]="ryan"
   [password]="ask"
   [group]=""
@@ -54,7 +50,7 @@ HOST_NAME="desktop"
 KEYBOARD_LAYOUT="us"
 LOCALE_LANGUAGE="en_US.UTF-8"
 LOCALE_ENCODEING="UTF-8"
-CONSOLE_FONT="ter132n"
+CONSOLE_FONT="ter-132n"
 declare -A TIMEZONE=(
   [zone]="America/Chicago"
   [ntp]="systemd_timesyncd"

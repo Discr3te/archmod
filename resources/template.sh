@@ -25,12 +25,9 @@ CONFIG_FILE_URL=""
 # CONFIG
 # =============================================================================
 
-declare -A LOGGING=(
-  [enable]=""
-  [file_name]=""
-)
-
 declare -A USER=(
+  [root,enable]=""   # true | false
+  [root,password]="" # default | ask
   [name]=""
   [password]=""    # default | ask
   [group]=""       # Check resources/lists/ for a comprehensive list
@@ -62,7 +59,7 @@ declare -A MIRRORLIST=(
   [use_mirror_status]="" # on | off
 )
 
-declare -A DISK=(a
+declare -A DISK=(
   [module]=""    # <gpt>[_home][_swap][_luks] -> <filesystem>/<value>.sh
   [name]=""      # ask | (e.g. nvme0n1)
   [efi,size]=""  # only if gpt partition table (e.g. 1GiB)

@@ -5,12 +5,6 @@ source <(curl -fsL "${SOURCE_URL}/lib/utils.sh")
 # =============================================================================
 # DEFAULTS
 # =============================================================================
-default_value 'LOGGING[enable]' "true"
-case "${LOGGING[file_name]}" in
-"true")
-  default_value 'LOGGING[file_name]' "archmod.log"
-  ;;
-esac
 
 default_value 'USER[name]' "linuxuser"
 default_value 'USER[group]' ""
@@ -27,7 +21,7 @@ default_value 'TIMEZONE[zone]' "UTC"
 default_value 'TIMEZONE[ntp]' "systemd_timesyncd"
 
 default_value MICROCODE "all"
-default_value BOOTLOADER "grub"
+default_value BOOTLOADER "systemd_boot"
 default_value KERNEL "linux"
 default_value NETWORK "networkmanager"
 default_value GPU_PACKAGES ""
@@ -57,28 +51,20 @@ case ${IN_CHROOT:-false} in
   load_module "filesystem/${DISK[module]}"
   load_module common/pacstrap_install
   load_module common/fstab
+  load_module common/arch_chroot
 
-  arch-chroot -S "$MOUNT_PATH" /bin/bash -c "IN_CHROOT=\"true\";
-  IN_CHROOT_BOOT_PATH=\"${BOOT_PATH/${MOUNT_PATH}/}\";
-  MOUNT_PATH=\"$MOUNT_PATH\";
-  BOOT_PARTITION=\"$BOOT_PARTITION\";
-  ROOT_PARTITION=\"$ROOT_PARTITION\";
-  $(curl -fsSL "$CONFIG_FILE_URL")"
-
-  cd /
-  sync
-  umount -R "$MOUNT_PATH"
   ;;
 "true")
-
   load_module "timezone/${TIMEZONE[ntp]}"
   load_module common/locale
   load_module common/initramfs
+  load_module common/host
   load_module "network/$NETWORK"
   load_module common/add_user
   load_module "bootloader/$BOOTLOADER"
   load_module "hardware/$HARDWARE"
   load_module "gpu_packages/$GPU_PACKAGES"
   # load_module "external_script/$EXTERNAL_SCRIPT"
+
   ;;
 esac

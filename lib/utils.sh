@@ -9,27 +9,21 @@ default_value() {
 }
 
 load_module() {
-  local param1=$1
-  local module
+  [[ -z $1 ]] && return
 
-  for module in $param1; do
-    FILE="${module/%.sh/}.sh"
+  local module="${1%%/*}"
+  local script="${1#*/}"
+  local i
+
+  for i in $script; do
+    FILE="$module/${i/%.sh/}.sh"
 
     case "$module" in
-    */)
-      echo "no param"
-      return
-      ;;
-    lib/*)
+    "lib")
       URL="${SOURCE_URL/%\//}/${FILE}"
       ;;
-    */*)
-      URL="${SOURCE_URL/%\//}/modules/${FILE}"
-      ;;
     *)
-      echo "module: $module"
-      echo "no case"
-      sleep 10
+      URL="${SOURCE_URL/%\//}/modules/${FILE}"
       ;;
     esac
 
@@ -38,7 +32,7 @@ load_module() {
 }
 
 install_pkg() {
-  pacman -Sy --noconfirm --needed "$@"
+  pacman -S --noconfirm --needed "$@"
 }
 
 uncomment() {

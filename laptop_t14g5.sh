@@ -10,7 +10,7 @@
 #   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Discr3te/archmod/refs/heads/main/laptop_t14g5.sh)"
 #
 # Download first, then run:
-#   curl -sfL https://raw.githubusercontent.com/Discr3te/archmod/refs/heads/main/laptop_t14g5.sh
+#   curl -sfLO https://raw.githubusercontent.com/Discr3te/archmod/refs/heads/main/laptop_t14g5.sh
 #   bash laptop_t14g5.sh
 #
 # Already have this file locally:
@@ -39,12 +39,8 @@ CONFIG_FILE_URL="$SOURCE_URL/laptop_t14g5.sh"
 # CONFIG
 # =============================================================================
 
-declare -A LOGGING=(
-  [enable]="false"
-  [file_name]="archmod.log"
-)
-
 declare -A USER=(
+  [root,enable]="false"
   [name]="ryan"
   [password]="ask"
   [group]=""
