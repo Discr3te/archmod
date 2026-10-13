@@ -55,7 +55,7 @@ CONSOLE_FONT="ter-124b"
 
 declare -A TIMEZONE=(
   [zone]="America/Chicago"
-  [ntp]="systemd_timesyncd"
+  [ntp]="chrony"
 )
 MICROCODE="amd-ucode"
 KERNEL="linux"
