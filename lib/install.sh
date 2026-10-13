@@ -64,7 +64,7 @@ case ${IN_CHROOT:-false} in
   load_module "bootloader/$BOOTLOADER"
   load_module "hardware/$HARDWARE"
   load_module "gpu_packages/$GPU_PACKAGES"
-  # load_module "external_script/$EXTERNAL_SCRIPT"
+  load_module "external_script/$EXTERNAL_SCRIPT"
 
   ;;
 esac
