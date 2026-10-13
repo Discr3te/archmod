@@ -32,7 +32,7 @@ load_module() {
 }
 
 install_pkg() {
-  pacman -S --noconfirm --needed "$@"
+  pacman -Sy --noconfirm --needed "$@"
 }
 
 uncomment() {
