@@ -26,10 +26,9 @@ CONFIG_FILE_URL=""
 # =============================================================================
 
 declare -A USER=(
-  [root,enable]=""   # true | false
-  [root,password]="" # default | ask
+  [root,password]="" # default (admin) | prompt | lock (locks root)
   [name]=""
-  [password]=""    # default | ask
+  [password]=""    # default (mypassword) | prompt
   [group]=""       # Check resources/lists/ for a comprehensive list
   [sudo,enable]="" # true | false
 )

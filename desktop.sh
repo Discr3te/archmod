@@ -39,7 +39,7 @@ CONFIG_FILE_URL="$SOURCE_URL/desktop.sh"
 # =============================================================================
 
 declare -A USER=(
-  [root,enable]="false"
+  [root,password]="lock"
   [name]="ryan"
   [password]="ask"
   [group]=""

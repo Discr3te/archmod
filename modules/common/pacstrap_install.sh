@@ -6,7 +6,7 @@ packages=(
   "base"
   "linux-firmware"
   "$KERNEL"
-  "$MICROCODE"
+  $MICROCODE        # don't quote, need it to word split if $MICROCODE=all
   ${EXTRA_PACKAGES} # don't quote, need it to word split
 )
 

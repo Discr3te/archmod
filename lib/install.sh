@@ -6,6 +6,7 @@ source <(curl -fsL "${SOURCE_URL}/lib/utils.sh")
 # DEFAULTS
 # =============================================================================
 
+default_value 'USER[root,password]' "lock"
 default_value 'USER[name]' "linuxuser"
 default_value 'USER[group]' ""
 default_value 'USER[sudo,enable]' "true"
@@ -24,7 +25,7 @@ default_value MICROCODE "all"
 default_value BOOTLOADER "systemd_boot"
 default_value KERNEL "linux"
 default_value NETWORK "networkmanager"
-default_value GPU_PACKAGES ""
+default_value GPU_PACKAGES "all_opensource"
 default_value HARDWARE ""
 default_value EXTRA_PACKAGES ""
 default_value EXTERNAL_SCRIPT ""

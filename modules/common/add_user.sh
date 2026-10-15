@@ -3,24 +3,16 @@
 # ROOT
 # =============================================================================
 
-case "${USER[root,enable]}" in
-"true")
-  case "${USER[root,enable]}" in
-  "ask")
-    prompt_password 'USER[root,password]' "password for root"
+case "${USER[root,password]}" in
+"prompt")
+  prompt_password 'USER[root,password]' "password for root"
 
-    chpasswd <<EOF
-      root:${USER[root,password]}
-EOF
-    ;;
-  "default")
-    chpasswd <<EOF
-      root:admin
-EOF
-    ;;
-  esac
+  chpasswd <<<"root:${USER[root,password]}"
   ;;
-"false")
+"default")
+  chpasswd <<<"root:admin"
+  ;;
+"lock")
   passwd -l root
   ;;
 esac
@@ -52,17 +44,13 @@ esac
 
 # Setting the password for the user
 case "${USER[password]}" in
-"ask")
+"prompt")
   prompt_password 'USER[password]' "password for ${USER[name]}"
 
-  chpasswd <<EOF
-${USER[name]}:${USER[password]}
-EOF
+  chpasswd <<<"${USER[name]}:${USER[password]}"
   ;;
 "default")
   # Password will be "mypassword", and will need to be reset after login
-  chpasswd <<EOF
-${USER[name]}:mypassword
-EOF
+  chpasswd <<<"${USER[name]}:mypassword"
   ;;
 esac
