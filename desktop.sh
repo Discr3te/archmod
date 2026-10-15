@@ -41,7 +41,7 @@ CONFIG_FILE_URL="$SOURCE_URL/desktop.sh"
 declare -A USER=(
   [root,password]="lock"
   [name]="ryan"
-  [password]="ask"
+  [password]="prompt"
   [group]=""
   [sudo,enable]="true"
 )

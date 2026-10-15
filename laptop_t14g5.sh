@@ -42,7 +42,7 @@ CONFIG_FILE_URL="$SOURCE_URL/laptop_t14g5.sh"
 declare -A USER=(
   [root,password]="lock"
   [name]="ryan"
-  [password]="ask"
+  [password]="prompt"
   [group]=""
   [sudo,enable]="true"
 )

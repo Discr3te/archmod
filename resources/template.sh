@@ -60,7 +60,7 @@ declare -A MIRRORLIST=(
 
 declare -A DISK=(
   [module]=""    # <gpt>[_home][_swap][_luks] -> <filesystem>/<value>.sh
-  [name]=""      # ask | (e.g. nvme0n1)
+  [name]=""      # prompt | (e.g. nvme0n1)
   [efi,size]=""  # only if gpt partition table (e.g. 1GiB)
   [root,size]="" # (e.g. 50GiB)
   [swap,size]="" # (e.g. 16GiB)

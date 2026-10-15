@@ -1,5 +1,14 @@
 #!/usr/bin/env bash
 
+require_cmd() {
+  local cmd=$1
+  local pkg=${2:-$1}
+
+  if ! command -v "$cmd" &>/dev/null; then
+    install_pkg "$pkg"
+  fi
+}
+
 default_value() {
   local -n ref=$1
 

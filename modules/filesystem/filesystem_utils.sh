@@ -1,9 +1,16 @@
 #!/usr/bin/env bash
 
-select_disk() {
-  if ! command -v fzf &>/dev/null; then
-    install_pkg fzf
+require_cmd() {
+  local cmd=$1
+  local pkg=${2:-$1}
+
+  if ! command -v "$cmd" &>/dev/null; then
+    install_pkg "$pkg"
   fi
+}
+
+select_disk() {
+  require_cmd fzf
 
   local fzf_opts=(
     --reverse
@@ -15,8 +22,36 @@ select_disk() {
   lsblk -dno NAME | fzf "${fzf_opts[@]}"
 }
 
+confirm_disk() {
+  local choice
+  require_cmd fzf
+
+  clear
+  while true; do
+    printf "%s\n\n" "This disk will be PERMANENTLY ERASED: ${DISK[name]}"
+    lsblk -o NAME,SIZE,MODEL "/dev/${DISK[name]}"
+    echo
+    read -N 1 -rp "Erase it? [y]es / [n]o, pick another disk / [q]uit: " choice
+    echo
+
+    case "$choice" in
+    [yY])
+      break
+      ;;
+    [nN])
+      DISK[name]=$(select_disk)
+      break
+      ;;
+    [qQ])
+      printf "%s\n" "Aborted. Nothing was changed."
+      exit 1
+      ;;
+    esac
+  done
+}
+
 validate_disk() {
-  if [[ "${DISK[name]}" == "ask" || ! -b "/dev/${DISK[name]}" ]]; then
+  if [[ "${DISK[name]}" == "prompt" || ! -b "/dev/${DISK[name]}" ]]; then
     DISK[name]=$(select_disk)
   fi
 }

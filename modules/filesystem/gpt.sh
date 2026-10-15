@@ -2,6 +2,7 @@
 load_module filesystem/filesystem_utils
 
 validate_disk
+confirm_disk
 
 MOUNT_PATH="/mnt"
 BOOT_PATH="/mnt/boot"

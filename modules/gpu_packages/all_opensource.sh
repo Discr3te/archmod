@@ -17,3 +17,5 @@ install_all_opensource() {
 
   install_pkg "${packages[@]}"
 }
+
+install_all_opensource

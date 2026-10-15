@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 printf "%s\n" "Setting up mirrorlist ranking"
+
 install_pkg pacman-contrib
 
 mirrorlist_url="https://archlinux.org/mirrorlist/?"
