@@ -1,14 +1,5 @@
 #!/usr/bin/env bash
 
-require_cmd() {
-  local cmd=$1
-  local pkg=${2:-$1}
-
-  if ! command -v "$cmd" &>/dev/null; then
-    install_pkg "$pkg"
-  fi
-}
-
 select_disk() {
   require_cmd fzf
 
@@ -24,10 +15,9 @@ select_disk() {
 
 confirm_disk() {
   local choice
-  require_cmd fzf
 
-  clear
   while true; do
+    clear
     printf "%s\n\n" "This disk will be PERMANENTLY ERASED: ${DISK[name]}"
     lsblk -o NAME,SIZE,MODEL "/dev/${DISK[name]}"
     echo
@@ -40,7 +30,6 @@ confirm_disk() {
       ;;
     [nN])
       DISK[name]=$(select_disk)
-      break
       ;;
     [qQ])
       printf "%s\n" "Aborted. Nothing was changed."
