@@ -63,7 +63,7 @@ BOOTLOADER="systemd_boot"
 NETWORK="networkmanager"
 HARDWARE="laptop_power"
 GPU_PACKAGES="amd_opensource"
-EXTRA_PACKAGES=""
+EXTRA_PACKAGES="brightnessctl"
 EXTERNAL_SCRIPT="arch_setup"
 
 declare -A MIRRORLIST=(
