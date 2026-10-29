@@ -7,7 +7,7 @@ echo "${USER[name]} ALL=(ALL:ALL) NOPASSWD: ALL" >"$SUDOERS_TMP"
 chmod 440 "$SUDOERS_TMP"
 trap 'rm -f "$SUDOERS_TMP"' EXIT
 
-runuser -l "${USER[name]}" -c "pwd; sleep 10; /bin/bash -c \"\$(curl -fsSL $DEV_SETUP_URL)\"" ||
+runuser -l "${USER[name]}" -c "/bin/bash -c \"\$(curl -fsSL $DEV_SETUP_URL)\"" ||
   exit $?
 
 rm -f "$SUDOERS_TMP"

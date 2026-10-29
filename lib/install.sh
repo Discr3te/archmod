@@ -67,5 +67,7 @@ case ${IN_CHROOT:-false} in
   load_module "gpu_packages/$GPU_PACKAGES"
   load_module "external_script/$EXTERNAL_SCRIPT"
 
+  printf "%s\n\n" "===> Archmod Finished  <==="
+
   ;;
 esac
